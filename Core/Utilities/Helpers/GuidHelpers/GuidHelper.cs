@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Core.Utilities.Helpers.GuidHelpers
+{
+    public class GuidHelper
+    {
+        public static string CreateGuid()
+        {
+            return Guid.NewGuid().ToString(); //Guid benzersiz değer oluşturmaya yarar.
+        }
+    }
+}
