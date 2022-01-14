@@ -1,6 +1,7 @@
 ﻿using Core.Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Bussines.Constants.Messages
@@ -20,5 +21,6 @@ namespace Bussines.Constants.Messages
         public static string UserAlreadyExist = "Kullanıcı Mevcut";
         internal static string UserRegisted = "Kayıt Başarılı";
         internal static string AccessTokenCreated = "AccessToken başarıyla oluşturuldu";
+        internal static string AuthorizationDenied = "Yetkiniz yok";
     }
 }

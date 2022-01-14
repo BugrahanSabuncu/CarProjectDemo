@@ -1,5 +1,6 @@
 ﻿using Bussines.Abstract;
 using Bussines.Constants.Messages;
+using Core.Aspects.Autofac.Performance;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using Core.Utilities.Security.Hashing;
@@ -21,14 +22,14 @@ namespace Bussines.Concrete
             _userService = userService;
             _tokenHelper = tokenHelper;
         }
-
+        [PerformanceAspect(5)]
         public IDataResult<AccessToken> CreateAccessToken(User user)
         {
             var claims = _userService.GetClaims(user);
             var accessToken=_tokenHelper.CreateToken(user, claims.Data);
             return new SuccessDataResult<AccessToken>(accessToken, Messages.AccessTokenCreated);
         }
-
+        [PerformanceAspect(5)]
         public IDataResult<User> Login(UserForLoginDto loginDto)
         {
             var userToCheck = _userService.GetByEmail(loginDto.Email);
@@ -42,7 +43,7 @@ namespace Bussines.Concrete
             }//bu kısımdada gönderilen parolayı tekrar hashleyerek karşılaştırıyoruz.
             return new SuccessDataResult<User>(Messages.SuccessfullLogin);
         }
-
+        [PerformanceAspect(5)]
         public IDataResult<User> Register(UserForRegisterDto registerDto, string password)
         {
             byte[] passwordHash, passwordSalt;
@@ -59,7 +60,7 @@ namespace Bussines.Concrete
             _userService.Add(user);
             return new SuccessDataResult<User>(user,Messages.UserRegisted);
         }
-
+        [PerformanceAspect(5)]
         public IResult UserExist(string email)
         {
             var result = _userService.GetByEmail(email) != null;

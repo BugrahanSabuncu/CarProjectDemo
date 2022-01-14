@@ -18,6 +18,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Core.Utilities.Security.JWT;
 using Core.Utilities.Security.Ecyption;
+using Core.Extensions;
+using Core.DepencencyResolvers;
 
 namespace WebApi
 {
@@ -53,8 +55,11 @@ namespace WebApi
                         IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
                     };
                 });
-            //services.AddSingleton<ICarService, CarManager>(); //.Net altyapısındaki IOC Container
-            //services.AddSingleton<ICarDal, EfCarDal>();
+            services.AddDependencyResolvers(new ICoreModule[] 
+           { 
+                new CoreModule()
+           });
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

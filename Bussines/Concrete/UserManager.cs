@@ -1,4 +1,5 @@
 ﻿using Bussines.Abstract;
+using Bussines.BussinesAspect.Autofac;
 using Core.Aspect.Autofac.Caching;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
@@ -17,7 +18,7 @@ namespace Bussines.Concrete
         {
             _userDal = userDal;
         }
-
+        [SecuredOperation("admin,user.add")]
         public IResult Add(User user)
         {
             _userDal.Add(user);
@@ -36,6 +37,7 @@ namespace Bussines.Concrete
             return new SuccessDataResult<User>(result);
         }
         [CacheAspect]
+        //[SecuredOperation("admin")]
         public IDataResult<List<OperationClaim>> GetClaims(User user)
         {
             var result = _userDal.GetClaims(user);
