@@ -19,8 +19,12 @@ namespace Bussines.Constants.Messages
         public static string PasswordError = "Hatalı Şifre";
         public static string SuccessfullLogin = "Giriş Başarılı";
         public static string UserAlreadyExist = "Kullanıcı Mevcut";
-        internal static string UserRegisted = "Kayıt Başarılı";
-        internal static string AccessTokenCreated = "AccessToken başarıyla oluşturuldu";
-        internal static string AuthorizationDenied = "Yetkiniz yok";
+        public static string UserRegisted = "Kayıt Başarılı";
+        public static string AccessTokenCreated = "AccessToken başarıyla oluşturuldu";
+        public static string AuthorizationDenied = "Yetkiniz yok";
+        public static string RentalListed = "Kiralamalar listelendi";
+        public static string RentalDetailListed = "Kiralama detayları listelendi";
+        public static string ColorListed = "Renkler Listelendi";
+        public static string BrandListed = "Markalar Listelendi";
     }
 }
