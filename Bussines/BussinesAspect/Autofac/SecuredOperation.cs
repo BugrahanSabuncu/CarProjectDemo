@@ -1,6 +1,7 @@
 ﻿using Bussines.Constants.Messages;
 using Castle.DynamicProxy;
 using Core.DependencyResolvers;
+using Core.Extensions;
 using Core.Utilities.Interceptors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
