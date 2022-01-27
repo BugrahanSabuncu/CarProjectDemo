@@ -25,8 +25,7 @@ namespace Bussines.Concrete
         }
 
         public IDataResult<List<RentalDetailsDto>> RentalDetails()
-        {
-           
+        {            
             return new SuccessDataResult<List<RentalDetailsDto>>(_rentalDal.rentalDetails(),Messages.RentalDetailListed);
         }
 

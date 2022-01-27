@@ -10,18 +10,18 @@ namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ColorController : ControllerBase
+    public class BrandsController : ControllerBase
     {
-        IColorService _colorService;
+        IBrandService _brandService;
 
-        public ColorController(IColorService colorService)
+        public BrandsController(IBrandService brandService)
         {
-            _colorService = colorService;
+            _brandService = brandService;
         }
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _colorService.GetAll();
+            var result = _brandService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
