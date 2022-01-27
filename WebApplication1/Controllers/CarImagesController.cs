@@ -20,7 +20,7 @@ namespace WebApi.Controllers
             _carImageService = carImageService;
         }
 
-        [HttpPost("add")]        
+        [HttpPost("add")]
         public IActionResult Add([FromForm] IFormFile file,[FromForm] CarImage carImage)
         {
             var result = _carImageService.Add(file, carImage);
@@ -44,6 +44,16 @@ namespace WebApi.Controllers
         public IActionResult Update(IFormFile formFile,CarImage carImage)
         {
             var result = _carImageService.Update(formFile, carImage);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpGet("getbycarid")]
+        public IActionResult GetByCarId(int carId)
+        {
+            var result = _carImageService.GetByCarId(carId);
             if (result.Success)
             {
                 return Ok(result);

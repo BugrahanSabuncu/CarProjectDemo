@@ -15,6 +15,7 @@ using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities;
 using Entities.Concrete;
+using Entities.DTOs;
 using FluentValidation;
 
 namespace Business.Concrete
@@ -96,6 +97,21 @@ namespace Business.Concrete
 
         }
 
-        
+        public IDataResult<List<CarDto>> GetByBrandId(int brandId)
+        {
+            var result = _carDal.GetAllCarDto().Where(c => c.BrandId == brandId).ToList();
+            return new SuccessDataResult<List<CarDto>>(result, Messages.ListedByBrand);
+        }
+
+        public IDataResult<List<CarDto>> GetByColorId(int colorId)
+        {
+            var result = _carDal.GetAllCarDto().Where(c => c.ColorId == colorId).ToList();
+            return new SuccessDataResult<List<CarDto>>(result, Messages.ListedByColor);
+        }
+
+        public IDataResult<List<CarDto>> GetAllCarDto()
+        {
+            return new SuccessDataResult<List<CarDto>>(_carDal.GetAllCarDto(),Messages.CarDtoListed);
+        }
     }
 }

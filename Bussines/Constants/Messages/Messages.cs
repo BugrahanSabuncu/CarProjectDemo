@@ -26,5 +26,8 @@ namespace Bussines.Constants.Messages
         public static string RentalDetailListed = "Kiralama detayları listelendi";
         public static string ColorListed = "Renkler Listelendi";
         public static string BrandListed = "Markalar Listelendi";
+        public static string ListedByBrand = "Seçilen Marka Araçlar Listelenmiştir.";
+        public static string ListedByColor = "Seçilen Renk Araçlar Listelenmiştir.";
+        public static string CarDtoListed = "Araçlar Listelendi";
     }
 }

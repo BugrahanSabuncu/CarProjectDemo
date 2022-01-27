@@ -76,7 +76,7 @@ namespace WebApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseStaticFiles();
             app.UseAuthorization();//yetkilendirme
             app.UseAuthentication();//anahtar
 

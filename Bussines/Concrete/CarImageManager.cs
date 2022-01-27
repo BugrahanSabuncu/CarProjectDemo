@@ -24,7 +24,7 @@ namespace Bussines.Concrete
             _CarImageDal = carImageDal;
             _fileHelper = fileHelper;
         }
-        [PerformanceAspect(5)]
+        //[PerformanceAspect(5)]
         public IResult Add(IFormFile formFile, CarImage carImage)
         {
             carImage.ImagePath = _fileHelper.Upload(formFile, PathConstans.ImagesPath);
@@ -56,7 +56,7 @@ namespace Bussines.Concrete
         {
             return new SuccessDataResult<CarImage>(_CarImageDal.Get(i => i.Id == imageId));
         }
-        [TransactionScopeAspect]//burada önce silne sonra tekrar yükleme yaptığı için kullanıma uygun.
+        [TransactionScopeAspect]//burada önce silme sonra tekrar yükleme yaptığı için kullanıma uygun.
         public IResult Update(IFormFile formFile, CarImage carImage)
         {
             _CarImageDal.Update(carImage);
