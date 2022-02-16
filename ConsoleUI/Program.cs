@@ -59,7 +59,7 @@ namespace ConsoleUI
         private static void Cartest2()
         {
             CarManager carManager = new CarManager(new EfCarDal());
-            var result = carManager.CarDetails();
+            var result = carManager.GetAllCarDto();
             if (result.Success == true)
             {
                 foreach (var carDetails in result.Data)

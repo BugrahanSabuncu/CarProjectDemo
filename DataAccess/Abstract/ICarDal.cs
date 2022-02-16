@@ -11,9 +11,8 @@ using System.Text;
 namespace DataAccess.Abstract
 {
     public interface ICarDal:IEntityRepository<Car>
-    {
-        List<CarDetailsDto> CarDetails();
-        public List<CarDto> GetAllCarDto(Expression<Func<CarDto, bool>> filter=null);
+    {       
+        public List<CarDto> GetAllCarDto();
 
 
     }

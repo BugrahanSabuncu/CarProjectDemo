@@ -56,6 +56,28 @@ namespace Business.Concrete
             
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.ListedMessage);
         }
+
+        [CacheAspect]
+        [PerformanceAspect(5)]
+        public IDataResult<List<CarDto>> GetFilters(int brandId,int colorId)
+        {
+            List<CarDto> _data;
+            if (brandId!=0 && colorId!=0)
+            {
+                _data = _carDal.GetAllCarDto().Where(c => c.BrandId == brandId && c.ColorId == colorId).ToList();
+            }
+            else if(brandId !=0)
+            {
+                _data = _carDal.GetAllCarDto().Where(c => c.BrandId == brandId).ToList();
+            }
+            else
+            {
+                _data = _carDal.GetAllCarDto().Where(c => c.ColorId == colorId).ToList();
+            }            
+            
+            return new SuccessDataResult<List<CarDto>>(_data, Messages.ListedMessage);
+        }
+
         [CacheAspect]
         [PerformanceAspect(5)]
         public IDataResult<Car> GetById(int id)
@@ -68,12 +90,7 @@ namespace Business.Concrete
             _carDal.Update(car);
             return new SuccessResult(Messages.UpdateFailedMessage);
         }
-        [CacheAspect]
-        [PerformanceAspect(5)]
-        public IDataResult<List<CarDetailsDto>> CarDetails()
-        {
-            return new SuccessDataResult<List<CarDetailsDto>>(_carDal.CarDetails(), "Detay Listeleme başarılı");
-        }
+       
 
         private IResult CheckColorCountControl(int colorId)
         {

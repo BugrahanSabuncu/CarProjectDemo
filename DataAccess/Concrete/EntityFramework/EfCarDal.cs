@@ -17,28 +17,28 @@ namespace DataAccessLayer.Concrete.EntityFramework
 {
     public class EfCarDal : EfEntityRepositoryBase<Car, CarContext>, ICarDal
     {
-        public List<CarDetailsDto> CarDetails()
-        {
-            using (CarContext context = new CarContext())
-            {
-                var result = from c in context.Cars
-                             join cl in context.Colors
-                             on c.ColorId equals cl.ColorId
-                             join br in context.Brands
-                             on c.BrandId equals br.BrandId
-                             select new CarDetailsDto()
-                             {
-                                 CarId = c.Id,
-                                 ColorName = cl.ColorName,
-                                 BrandName = br.BrandName,
-                                 ModelYear = c.ModelYear,
-                                 Description = c.Description,
-                                 DailyPrice = c.DailyPrice
-                             };
-                return result.ToList();
-            }
-        }
-        public List<CarDto> GetAllCarDto(Expression<Func<CarDto, bool>> filter = null)
+        //public List<CarDetailsDto> CarDetails()
+        //{
+        //    using (CarContext context = new CarContext())
+        //    {
+        //        var result = from c in context.Cars
+        //                     join cl in context.Colors
+        //                     on c.ColorId equals cl.ColorId
+        //                     join br in context.Brands
+        //                     on c.BrandId equals br.BrandId
+        //                     select new CarDetailsDto()
+        //                     {
+        //                         CarId = c.Id,
+        //                         ColorName = cl.ColorName,
+        //                         BrandName = br.BrandName,
+        //                         ModelYear = c.ModelYear,
+        //                         Description = c.Description,
+        //                         DailyPrice = c.DailyPrice
+        //                     };
+        //        return result.ToList();
+        //    }
+        //}
+        public List<CarDto> GetAllCarDto()
         {
             using (CarContext context = new CarContext())
             {

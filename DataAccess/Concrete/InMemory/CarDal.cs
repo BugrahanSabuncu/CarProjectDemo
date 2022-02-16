@@ -25,12 +25,7 @@ namespace DataAccessLayer.InMemoryDal
         public void Add(Car car)
         {
             _cars.Add(car);
-        }
-
-        public List<CarDetailsDto> CarDetails()
-        {
-            throw new NotImplementedException();
-        }
+        }        
 
         public void Delete(Car car)
         {
@@ -48,6 +43,11 @@ namespace DataAccessLayer.InMemoryDal
         }
 
         public List<CarDto> GetAllCarDto(Expression<Func<CarDto, bool>> filter = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<CarDto> GetAllCarDto()
         {
             throw new NotImplementedException();
         }

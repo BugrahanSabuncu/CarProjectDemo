@@ -20,6 +20,7 @@ using Core.Utilities.Security.JWT;
 using Core.Utilities.Security.Ecyption;
 using Core.Extensions;
 using Core.DepencencyResolvers;
+using Microsoft.IdentityModel.Logging;
 
 namespace WebApi
 {
@@ -36,12 +37,13 @@ namespace WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddCors(options =>
-            {
-                options.AddPolicy("AllowOrigin",
-                    builder => builder.WithOrigins("http://localhost:3000")); //burada normalde web adresi yazılır.
-            });
             services.AddCors();
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy("AllowOrigin",
+            //        builder => builder.WithOrigins("http://localhost:3000")); //burada normalde web adresi yazılır.
+            //});
+            IdentityModelEventSource.ShowPII = true; //araştırılacak
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options=>
@@ -70,13 +72,13 @@ namespace WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseCors(builder => builder.WithOrigins("http://localhost:3000").AllowAnyHeader());
-            app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
+            app.UseStaticFiles();
+            //app.UseCors(builder => builder.WithOrigins("http://localhost:3000").AllowAnyHeader());
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod());
             app.UseHttpsRedirection();
 
             app.UseRouting();
-            app.UseStaticFiles();
+            
             app.UseAuthorization();//yetkilendirme
             app.UseAuthentication();//anahtar
 
