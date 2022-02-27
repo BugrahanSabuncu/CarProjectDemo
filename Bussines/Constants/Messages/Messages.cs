@@ -20,7 +20,7 @@ namespace Bussines.Constants.Messages
         public static string SuccessfullLogin = "Giriş Başarılı";
         public static string UserAlreadyExist = "Kullanıcı Mevcut";
         public static string UserRegisted = "Kayıt Başarılı";
-        public static string AccessTokenCreated = "AccessToken başarıyla oluşturuldu";
+        public static string AccessTokenCreated = "Access Token Oluşturuldu";
         public static string AuthorizationDenied = "Yetkiniz yok";
         public static string RentalListed = "Kiralamalar listelendi";
         public static string RentalDetailListed = "Kiralama detayları listelendi";

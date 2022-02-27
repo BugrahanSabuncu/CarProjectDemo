@@ -7,6 +7,7 @@ using DataAccess.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace Bussines.Concrete
 {
@@ -33,15 +34,14 @@ namespace Bussines.Concrete
         [CacheAspect]
         public IDataResult<User> GetByEmail(string email)
         {
-            var result = _userDal.Get(u => u.Email == email);
+            var result = _userDal.Get(u => u.Email ==email);
             return new SuccessDataResult<User>(result);
         }
         [CacheAspect]
         //[SecuredOperation("admin")]
-        public IDataResult<List<OperationClaim>> GetClaims(User user)
-        {
-            var result = _userDal.GetClaims(user);
-            return new SuccessDataResult<List<OperationClaim>>(result);
+        public List<OperationClaim> GetClaims(User user)
+        {           
+            return _userDal.GetClaims(user);
         }
 
         public IResult Update(User user)

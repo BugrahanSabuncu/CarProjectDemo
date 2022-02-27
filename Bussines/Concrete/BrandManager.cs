@@ -20,7 +20,8 @@ namespace Bussines.Concrete
 
         public IResult Add(Brand brand)
         {
-            throw new NotImplementedException();
+            _brandDal.Add(brand);
+            return new SuccessResult(Messages.AddedMessage);
         }
 
         public IResult Delete(Brand brand)

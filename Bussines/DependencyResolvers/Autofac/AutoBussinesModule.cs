@@ -43,6 +43,7 @@ namespace Bussines.DependencyResolvers.Autofac
             builder.RegisterType<JwtHelper>().As<ITokenHelper>().SingleInstance();
 
             builder.RegisterType<PaymentManager>().As<IPaymentService>().SingleInstance();
+            builder.RegisterType<RentalManager>().As<IRentalService>().SingleInstance();
         }
     }
 }

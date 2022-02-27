@@ -22,11 +22,11 @@ namespace Bussines.Concrete
             _userService = userService;
             _tokenHelper = tokenHelper;
         }
-        [PerformanceAspect(5)]
+        //[PerformanceAspect(5)]
         public IDataResult<AccessToken> CreateAccessToken(User user)
         {
             var claims = _userService.GetClaims(user);
-            var accessToken=_tokenHelper.CreateToken(user, claims.Data);
+            var accessToken=_tokenHelper.CreateToken(user, claims);
             return new SuccessDataResult<AccessToken>(accessToken, Messages.AccessTokenCreated);
         }
         [PerformanceAspect(5)]
@@ -41,7 +41,7 @@ namespace Bussines.Concrete
             {
                 return new ErrorDataResult<User>(Messages.PasswordError);
             }//bu kısımdada gönderilen parolayı tekrar hashleyerek karşılaştırıyoruz.
-            return new SuccessDataResult<User>(Messages.SuccessfullLogin);
+            return new SuccessDataResult<User>(userToCheck.Data,Messages.SuccessfullLogin);
         }
         [PerformanceAspect(5)]
         public IDataResult<User> Register(UserForRegisterDto registerDto, string password)

@@ -1,10 +1,8 @@
 ﻿using Core.DataAccess.EntityFramework;
 using DataAccess.Abstract;
 using DataAccessLayer.Concrete.EntityFramework;
-using Entities.Concrete;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
 using Core.Entities.Concrete;
 
@@ -16,15 +14,11 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (var context=new CarContext())
             {
-                var result = from OperationClaim in context.OperationClaims
-                             join UserOperationClaim in context.UserOperationClaims
-                             on OperationClaim.Id equals UserOperationClaim.OperationClaimId
-                             where UserOperationClaim.UserId == user.Id
-                             select new OperationClaim { Id = OperationClaim.Id, Name = OperationClaim.Name };
-                if (result==null)
-                {
-                    return null;
-                }
+                var result = from operationClaim in context.OperationClaims
+                             join userOperationClaim in context.UserOperationClaims
+                             on operationClaim.Id equals userOperationClaim.Id
+                             where userOperationClaim.Id == user.Id
+                             select new OperationClaim { Id = operationClaim.Id, Name = operationClaim.Name };
                 return result.ToList();
             }
         }

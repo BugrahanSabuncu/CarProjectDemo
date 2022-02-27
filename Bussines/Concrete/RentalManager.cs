@@ -22,7 +22,8 @@ namespace Bussines.Concrete
 
         public IResult Add(Rental rental)
         {
-            throw new NotImplementedException();
+            _rentalDal.Add(rental);
+            return new SuccessResult();
         }
 
         public IDataResult<List<RentalDetailsDto>> RentalDetails()
